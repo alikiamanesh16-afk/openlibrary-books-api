@@ -1,4 +1,5 @@
 import requests
+import csv
 
 url = "https://openlibrary.org/search.json"
 
@@ -27,3 +28,16 @@ for book in books:
 
 
 print(filtered_book)
+
+
+with open("books.csv", "w", newline="", encoding="utf-8") as file:
+    writer = csv.writer(file)
+
+    writer.writerow(["title", "author", "first_publish_year"])
+
+    for book in filtered_book:
+        writer.writerow([
+            book["title"],
+            ", ".join(book["author_name"]),
+            book["first_publish_year"]
+        ])
