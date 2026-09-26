@@ -13,4 +13,17 @@ response = requests.get(
 
 data = response.json()
 
-print(data)
+
+books = data["docs"]
+
+filtered_book = []
+
+for book in books:
+
+    year = book["first_publish_year"]
+    if year > 2000:
+        filtered_book.append(book)
+
+
+
+print(filtered_book)
